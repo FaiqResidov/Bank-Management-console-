@@ -34,18 +34,32 @@ public class Bank {
     }
 
     public static void removeUserById(int id){
+        User [] user1=new User[users.length-1];
         boolean isFind=true;
-       for(int i=0;i<users.length;i++){
-           if(users[i]!=null && id==users[i].id){
-               isFind=false;
-              users[i]=null;
-               System.out.println("User ugurla silindi :)");
-           }
-
-       }
+        for(int i=0;i<users.length;i++){
+            if(users[i]!=null && id==users[i].id){
+                System.out.println("User ugurla silindi :)");
+                isFind=false;
+                break;
+            }
+        }
         if(isFind){
             System.out.println("Bu id-li user movcud deyil :(");
         }
+
+        int index=0;
+       for(int i=0;i<users.length;i++){
+           if(users[i]!=null && id!=users[i].id){
+               user1[index++]=users[i];
+           }
+
+       }
+       if(!isFind){
+           users=user1;
+       }
+
+
+
     }
 
     public static User[] getAllUser(){
@@ -55,22 +69,15 @@ public class Bank {
         boolean isFind=true;
         for(int i=0;i<users.length;i++){
             if(users[i]!=null && id==users[i].id){
-                isFind=false;
+
               return users[i];
 
             }
-
-
         }
         if(isFind){
                 System.out.println("Bu id-e uygun user movcud deyil!");
 
         }
-
             return null;
-
     }
-
-
-
 }
